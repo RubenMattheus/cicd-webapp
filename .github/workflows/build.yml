@@ -20,3 +20,5 @@ jobs:
 
       - name: Run yarn lint
         run: yarn lint
+        env:
+          ESLINT_USE_FLAT_CONFIG: false
