@@ -1,0 +1,33 @@
+services:
+  webapp:
+    image: rubenmattheus2001/webapp
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      - MYSQL_URL=mysql://user:password@database:3306/animals
+    depends_on:
+      - database
+    command: yarn start
+
+  database:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: animals
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+
+  test:
+    image: rubenmattheus2001/webapp
+    environment:
+      - API_URL=http://webapp:3000
+    depends_on:
+      - webapp
+    command: yarn test
+
+volumes:
+  mysql_data:
