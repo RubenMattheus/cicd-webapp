@@ -19,7 +19,7 @@ jobs:
         run: yarn install
 
       - name: Fix linting error
-        run: yarn dlx @eslint/migrate-config .eslintrc.json 
+        run: npx @eslint/migrate-config .eslintrc.json
 
       - name: Run yarn lint
         run: yarn lint
