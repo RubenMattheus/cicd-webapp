@@ -18,14 +18,5 @@ jobs:
       - name: Install yarn
         run: yarn install
 
-      - name: Fix linting error
-        run: npx @eslint/migrate-config .eslintrc.json
-
-      - name: Run npm install globals
-        run: npm install globals @eslint/js @eslint/eslintrc -D
-
-      - name: Run npm audit fix
-        run: npm audit fix
-
       - name: Run yarn lint
         run: yarn lint
